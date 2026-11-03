@@ -5,71 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free parking finder — areas included</title>
   <style>
+    :root {
+      color-scheme: light;
+      --ink: #1c1915;
+      --muted: #5c5348;
+      --paper: #f6f3ec;
+      --card: #fffdf8;
+      --line: #e4dccf;
+      --accent: #8a3d12;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #f4f1ea;
-      color: #1c1915;
-      font: 18px/1.5 Georgia, "Times New Roman", serif;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.5 "Segoe UI", sans-serif;
     }
-    main {
-      max-width: 40rem;
-      margin: 0 auto;
-      padding: 2.5rem 1.25rem 4rem;
+    main { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    header { text-align: center; }
+    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 0.6rem; }
+    h2 { font-size: 1.25rem; margin: 2.2rem 0 0.6rem; }
+    .lead { color: var(--muted); font-size: 1.15rem; margin: 0 auto 1.2rem; max-width: 36rem; }
+    .actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    a.button, a.text {
+      text-decoration: none;
     }
-    h1, h2 {
-      font-weight: 600;
-      line-height: 1.2;
+    a.button {
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      font-weight: 650;
     }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.25rem; margin-top: 2rem; }
-    p, li { margin: 0.4rem 0; }
-    ul { padding-left: 1.2rem; }
+    a.text { color: var(--accent); font-weight: 650; align-self: center; }
+    img.shot {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: block;
+    }
     .note {
-      background: #fff;
-      border-left: 4px solid #8a5a2b;
-      padding: 0.75rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin-top: 1rem;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.2rem 1rem 0.8rem;
+    }
+    ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+    li { margin: 0.2rem 0; }
+    footer { color: var(--muted); font-size: 0.92rem; margin-top: 2rem; }
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>Free parking finder</h1>
-    <p>A map of published parking restrictions. The sign at the kerb wins. A blank road is not free parking.</p>
-    <p class="note">A zone shape is the controlled area, not a bay on every street. Where the map has only a zone, or a line for a whole street, that line is not each kerb.</p>
+    <header>
+      <h1>Free parking finder</h1>
+      <p class="lead">Published parking restrictions, read from the kerb. A blank road is not free parking.</p>
+      <div class="actions">
+        <a class="button" href="https://freeparkingfinder.aden.website">Open the map</a>
+        <a class="text" href="https://github.com/Arbzy1/freeparkingfinder">Source on GitHub</a>
+      </div>
+      <img class="shot" src="docs/sutton.png" alt="Sutton borough on the parking map, with free bays listed beside the streets">
+    </header>
+    <p class="note">The sign at the kerb wins. A gap between lines is not a free space. A zone shape is the controlled area, not a bay on every street.</p>
 
-    <h2>Kerb lines</h2>
-    <p>These places have council bays and yellow lines, or the red-route restrictions. A gap between lines is not a free space.</p>
-    <ul>
-      <li>Camden</li>
-      <li>City of London</li>
-      <li>Epsom and Ewell</li>
-      <li>Islington</li>
-      <li>Kingston upon Thames</li>
-      <li>Southwark</li>
-      <li>Sutton</li>
-      <li>Transport for London red routes</li>
-    </ul>
-    <p>Epsom and Ewell also marks some roads where the council file had no restriction line. That mark is only for those roads.</p>
-
-    <h2>Zones and whole streets</h2>
-    <p>These places are on the map, but not as a line for each bay.</p>
-    <ul>
-      <li>Barking and Dagenham — controlled zones</li>
-      <li>Enfield — controlled zones</li>
-      <li>Hammersmith and Fulham — whole streets</li>
-      <li>Harrow — whole streets</li>
-      <li>Kensington and Chelsea — whole streets</li>
-      <li>Lambeth — whole streets</li>
-      <li>Merton — whole streets</li>
-      <li>Newham — whole streets</li>
-      <li>Wandsworth — controlled zones</li>
-    </ul>
-
-    <h2>Other marks</h2>
-    <ul>
-      <li>Cardiff — blue permit streets from the council list. Hours are on the sign. This is not a full bay survey.</li>
-      <li>A smaller set of bays comes from OpenStreetMap. Those bays do not fill any borough.</li>
-    </ul>
+    <div class="grid">
+      <article>
+        <h2>Kerb lines</h2>
+        <ul>
+          <li>Camden</li>
+          <li>City of London</li>
+          <li>Epsom and Ewell</li>
+          <li>Islington</li>
+          <li>Kingston upon Thames</li>
+          <li>Southwark</li>
+          <li>Sutton</li>
+          <li>Transport for London red routes</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Zones and whole streets</h2>
+        <ul>
+          <li>Barking and Dagenham — zones</li>
+          <li>Enfield — zones</li>
+          <li>Wandsworth — zones</li>
+          <li>Hammersmith and Fulham</li>
+          <li>Harrow</li>
+          <li>Kensington and Chelsea</li>
+          <li>Lambeth</li>
+          <li>Merton</li>
+          <li>Newham</li>
+        </ul>
+      </article>
+    </div>
+    <p>Epsom and Ewell also marks some roads where the council file had no restriction line. That mark is only for those roads. Cardiff is a list of blue permit streets, and the hours stay on the sign. A few extra bays come from OpenStreetMap and do not fill a borough.</p>
+    <footer>Map data © OpenStreetMap contributors. Basemap by OpenFreeMap.</footer>
   </main>
 </body>
 </html>
